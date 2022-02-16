@@ -1,0 +1,17 @@
+<main class="form-signin">
+  <form>
+    <h1 class="h3 fw-normal">Faça o Login</h1>
+    <div class="form-floating">
+      <input type="email" class="form-control" id="floatingInput" placeholder="Usuario" name="user" [(ngModel)]="user">
+      <label for="floatingInput">Usuario</label>
+    </div>
+    <div class="mb-1"></div>
+    <div class="form-floating">
+      <input type="password" class="form-control" id="floatingPassword" placeholder="Senha" name="passw" [(ngModel)]="passw">
+      <label for="floatingPassword">Senha</label>
+    </div>
+
+    <div class="mb-3"></div>
+    <button class="w-100 btn btn-primary" type="submit" routerLinkActive="active" (click)="loginUser()">Entrar</button>
+  </form>
+</main>

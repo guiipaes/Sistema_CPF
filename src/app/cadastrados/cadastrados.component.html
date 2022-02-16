@@ -1,0 +1,71 @@
+<app-nav></app-nav>
+
+
+<div class="row">
+    <div class="col-sm-6" *ngIf="cadastroSelecionado">
+
+    <div>
+      <app-titulo [titulo]="'Editar Cadastro'"></app-titulo>
+    </div>
+    <div>
+      <button class="btn btn-sm btn-outline-danger" (click)="voltar()">Voltar</button>
+    </div>
+  <form [formGroup]="cadForm" (submit)="cadsubmit">
+    <div class="mb-3">
+      <label for="formGroupExampleInput" class="form-label">CPF</label>
+      <input type="text" formControlName="cpf" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label for="formGroupExampleInput2" class="form-label">Nome</label>
+      <input type="text" formControlName="nome" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label for="formGroupExampleInput2" class="form-label">Endereco</label>
+      <input type="text" formControlName="endereco" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label for="formGroupExampleInput2" class="form-label">Telefone</label>
+      <input type="text" formControlName="telefone" class="form-control">
+    </div>
+    <div class="form-group">
+      <hr>
+      <button *ngIf="novoCadastro == false" class="btn btn-sm btn-outline-success" (click)="editCad(cadForm)" [disabled]="!cadForm.valid">Salvar</button>
+      <button *ngIf="novoCadastro == true" class="btn btn-sm btn-outline-success" (click)="salvarNovo(cadForm)" [disabled]="!cadForm.valid">Adicionar</button>
+    </div>
+  </form>
+
+</div>
+
+<div [ngClass]="{'col-sm-12': false, 'col-sm-6': cadastroSelecionado}">
+  <app-titulo [titulo]="titulo" ></app-titulo>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">CPF</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Endereco</th>
+        <th scope="col">Telefone</th>
+        <th scope="col">Opções</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cadastrado of cadastrados">
+        <th>{{cadastrado.cpf}}</th>
+        <td>{{cadastrado.nome}}</td>
+        <td>{{cadastrado.endereco}}</td>
+        <td>{{cadastrado.telefone}}</td>
+        <td>
+          <div class="btn-group">
+            <button (click)="cadastroSelect(cadastrado)" class="btn btn-sm mx-1 btn-primary mr-1">Editar</button>
+            <button (click)="deleteCad(cadastrado)" class="btn btn-sm btn-danger">Excluir</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="mb-3">
+    <button (click)="iniciarCadastroNovo()" class="btn btn-sm btn-primary mr-1">Adicionar Novo Cadastro</button>
+  </div>
+</div>
+</div>
+

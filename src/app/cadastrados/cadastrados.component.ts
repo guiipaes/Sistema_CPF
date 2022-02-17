@@ -14,11 +14,12 @@ export class CadastradosComponent implements OnInit {
   texto!: string;
   cadForm!: FormGroup;
   novoCadastro = false;
-  editId = -1
+  editId = -1;
+  idGeral = -1;
 
 
   cadastrados = [
-    {id: 1, nome: 'Gui', cpf: '11645687429', endereco: 'Rua Teste', telefone: '48991403546'},
+    {id: 0, nome: 'Gui', cpf: '11645687429', endereco: 'Rua Teste', telefone: '48991403546'},
 
   ];
 
@@ -46,8 +47,9 @@ export class CadastradosComponent implements OnInit {
   }
 
   salvarNovo(cadForm: FormGroup) {
-    console.log(cadForm);
+    cadForm.value.id = this.idGeral;
     this.cadastrados.push(cadForm.value);
+    this.idGeral++;
   }
 
   cadsubmit(){
@@ -59,6 +61,7 @@ export class CadastradosComponent implements OnInit {
     this.novoCadastro = false;
     this.cadForm.patchValue(cadastro);
     this.editId = cadastro.id
+    this.idGeral++ -1;
   }
 
   voltar() {

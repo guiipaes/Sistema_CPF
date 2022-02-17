@@ -14,13 +14,11 @@ export class CadastradosComponent implements OnInit {
   texto!: string;
   cadForm!: FormGroup;
   novoCadastro = false;
-  editId = -1;
-  idGeral = -1;
+  idGeral = 1;
 
 
   cadastrados = [
     {id: 0, nome: 'Gui', cpf: '11645687429', endereco: 'Rua Teste', telefone: '48991403546'},
-
   ];
 
 
@@ -52,16 +50,10 @@ export class CadastradosComponent implements OnInit {
     this.idGeral++;
   }
 
-  cadsubmit(){
-    console.log(this.cadForm.value);
-  }
-
   cadastroSelect(cadastro: cadastrado) {
     this.cadastroSelecionado = true;
     this.novoCadastro = false;
     this.cadForm.patchValue(cadastro);
-    this.editId = cadastro.id
-    this.idGeral++ -1;
   }
 
   voltar() {
@@ -74,9 +66,8 @@ export class CadastradosComponent implements OnInit {
   }
 
   editCad(cadastro: FormGroup){
-    const edit = (this.cadastrados.findIndex(cad => cad.id == this.editId))
+    const edit = (this.cadastrados.findIndex(cad => cad.id == cadastro.value.id))
     this.cadastrados[edit] = cadastro.value
-
   }
 
 
